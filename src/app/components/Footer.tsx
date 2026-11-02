@@ -1,193 +1,15 @@
-// "use client";
-// import Link from "next/link";
-// import { useEffect, useState } from "react";
-
-// import {
-//   Camera,
-//   Users,
-//   BriefcaseBusiness,
-//   Mail,
-//   MapPin,
-//   ArrowRight,
-// } from "lucide-react";
-
-// const quickLinks = [
-//   { name: "Home", href: "/" },
-//   { name: "Explore Studios", href: "/studios" },
-//   { name: "How It Works", href: "/#how-it-works" },
-//   { name: "About Us", href: "/#about" },
-// ];
-
-// const hostLinks = [
-//   { name: "Become a Host", href: "/add-studio" },
-//   { name: "My Studio Listings", href: "/my-listings" },
-//   { name: "My Bookings", href: "/my-bookings" },
-// ];
-
-// export default function Footer() {
-//     const [year, setYear] = useState(2026);
-
-// useEffect(() => {
-//   setYear(new Date().getFullYear());
-// }, []);
-//   return (
-//     <footer className="border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950">
-//       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-
-//         {/* Main Footer */}
-//         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-
-//           {/* Brand */}
-//           <div>
-//             <Link
-//               href="/"
-//               className="text-2xl font-extrabold tracking-tight text-blue-600 dark:text-blue-400"
-//             >
-//               StudioSpace<span className="text-gray-900 dark:text-white">.</span>
-//             </Link>
-
-//             <p className="mt-5 max-w-xs text-sm leading-7 text-gray-600 dark:text-gray-400">
-//               Discover, book and share creative spaces.
-//               StudioSpace connects studio owners with creators
-//               to bring great ideas to life.
-//             </p>
-
-//             <div className="mt-6 flex gap-3">
-//               <a
-//                 href="https://www.facebook.com/"
-//                 target="_blank"
-//                 rel="noopener noreferrer"
-//                 aria-label="Facebook"
-//                 className="rounded-lg bg-gray-100 p-2.5 text-gray-600 transition hover:bg-blue-100 hover:text-blue-600 dark:bg-gray-800 dark:text-gray-300"
-//               >
-//                 <Users size={19} />
-//               </a>
-
-//               <a
-//                 href="https://www.instagram.com/"
-//                 target="_blank"
-//                 rel="noopener noreferrer"
-//                 aria-label="Instagram"
-//                 className="rounded-lg bg-gray-100 p-2.5 text-gray-600 transition hover:bg-blue-100 hover:text-blue-600 dark:bg-gray-800 dark:text-gray-300"
-//               >
-//                 <Camera size={19} />
-//               </a>
-
-//               <a
-//                 href="https://www.linkedin.com/"
-//                 target="_blank"
-//                 rel="noopener noreferrer"
-//                 aria-label="LinkedIn"
-//                 className="rounded-lg bg-gray-100 p-2.5 text-gray-600 transition hover:bg-blue-100 hover:text-blue-600 dark:bg-gray-800 dark:text-gray-300"
-//               >
-//                 <BriefcaseBusiness size={19} />
-//               </a>
-//             </div>
-//           </div>
-
-//           {/* Quick Links */}
-//           <div>
-//             <h3 className="font-bold text-gray-900 dark:text-white">
-//               Quick Links
-//             </h3>
-
-//             <ul className="mt-5 space-y-4">
-//               {quickLinks.map((link) => (
-//                 <li key={link.name}>
-//                   <Link
-//                     href={link.href}
-//                     className="text-sm text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
-//                   >
-//                     {link.name}
-//                   </Link>
-//                 </li>
-//               ))}
-//             </ul>
-//           </div>
-
-//           {/* For Hosts */}
-//           <div>
-//             <h3 className="font-bold text-gray-900 dark:text-white">
-//               For Studio Owners
-//             </h3>
-
-//             <ul className="mt-5 space-y-4">
-//               {hostLinks.map((link) => (
-//                 <li key={link.name}>
-//                   <Link
-//                     href={link.href}
-//                     className="text-sm text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
-//                   >
-//                     {link.name}
-//                   </Link>
-//                 </li>
-//               ))}
-//             </ul>
-//           </div>
-
-//           {/* Contact */}
-//           <div>
-//             <h3 className="font-bold text-gray-900 dark:text-white">
-//               Get in Touch
-//             </h3>
-
-//             <div className="mt-5 space-y-5">
-//               <div className="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-400">
-//                 <Mail size={19} className="mt-0.5 shrink-0 text-blue-600" />
-//                 <a
-//                   href="mailto:support@studiospace.com"
-//                   className="hover:text-blue-600"
-//                 >
-//                   support@studiospace.com
-//                 </a>
-//               </div>
-
-//               <div className="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-400">
-//                 <MapPin size={19} className="mt-0.5 shrink-0 text-blue-600" />
-//                 <span>Bangladesh</span>
-//               </div>
-//             </div>
-
-//             <Link
-//               href="/studios"
-//               className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400"
-//             >
-//               Explore Studios
-//               <ArrowRight size={16} />
-//             </Link>
-//           </div>
-//         </div>
-
-//         {/* Copyright */}
-//         <div className="mt-14 border-t border-gray-200 pt-7 text-center dark:border-gray-800">
-//           <p className="text-sm text-gray-500 dark:text-gray-400">
-//             © {year} StudioSpace. All rights reserved.
-//           </p>
-
-//           <p className="mt-2 text-xs text-gray-400 dark:text-gray-500">
-//             Made for creators, by creators.
-//           </p>
-//         </div>
-//       </div>
-//     </footer>
-//   );
-// }
-
-
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import Link from "next/link";
 import {
-  Camera,
-  Users,
-  BriefcaseBusiness,
   Mail,
   MapPin,
   ArrowRight,
   Sparkles,
 } from "lucide-react";
+import toast from "react-hot-toast";
 
 const quickLinks = [
   { name: "Home", href: "/" },
@@ -202,12 +24,34 @@ const hostLinks = [
   { name: "My Bookings", href: "/my-bookings" },
 ];
 
+const popularCategories = [
+  { name: "Photography Studio", href: "/studios?category=Photography" },
+  { name: "Music Studio", href: "/studios?category=Music" },
+  { name: "Dance Studio", href: "/studios?category=Dance" },
+  { name: "Podcast Studio", href: "/studios?category=Podcast" },
+  { name: "Creative Workspace", href: "/studios" },
+];
+
 export default function Footer() {
   const [year, setYear] = useState(2026);
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     setYear(new Date().getFullYear());
   }, []);
+
+  const handleNewsletter = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!email.trim()) {
+      toast.error("Please enter your email address.");
+      return;
+    }
+
+    // Newsletter backend is not connected yet.
+    toast("Newsletter subscription will be available soon.");
+    setEmail("");
+  };
 
   return (
     <footer className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950 text-white">
@@ -249,7 +93,7 @@ export default function Footer() {
         </div>
 
         {/* Main Footer */}
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-5">
 
           {/* Brand */}
           <div>
@@ -267,15 +111,16 @@ export default function Footer() {
               amazing ideas to life.
             </p>
 
+            {/* Social Links */}
             <div className="mt-7 flex gap-3">
               <a
                 href="https://www.facebook.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="rounded-xl border border-white/10 bg-white/10 p-3 text-blue-100 transition hover:border-cyan-400 hover:bg-cyan-400 hover:text-slate-950"
+                className="rounded-xl border border-white/10 bg-white/10 p-3 text-sm font-bold text-blue-100 transition hover:bg-blue-500 hover:text-white"
               >
-                <Users size={19} />
+                f
               </a>
 
               <a
@@ -283,9 +128,9 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="rounded-xl border border-white/10 bg-white/10 p-3 text-blue-100 transition hover:border-purple-400 hover:bg-purple-400 hover:text-white"
+                className="rounded-xl border border-white/10 bg-white/10 p-3 text-sm font-bold text-blue-100 transition hover:bg-pink-500 hover:text-white"
               >
-                <Camera size={19} />
+                IG
               </a>
 
               <a
@@ -293,12 +138,23 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="rounded-xl border border-white/10 bg-white/10 p-3 text-blue-100 transition hover:border-blue-400 hover:bg-blue-400 hover:text-white"
+                className="rounded-xl border border-white/10 bg-white/10 p-3 text-sm font-bold text-blue-100 transition hover:bg-blue-600 hover:text-white"
               >
-                <BriefcaseBusiness size={19} />
+                in
+              </a>
+
+              <a
+                href="https://x.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X"
+                className="rounded-xl border border-white/10 bg-white/10 p-3 text-lg font-bold text-blue-100 transition hover:bg-white hover:text-black"
+              >
+                𝕏
               </a>
             </div>
           </div>
+          {/* Brand section ends here */}
 
           {/* Quick Links */}
           <div>
@@ -325,7 +181,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* For Hosts */}
+          {/* Host Links */}
           <div>
             <h3 className="mb-6 text-lg font-bold">
               For Studio Owners
@@ -350,43 +206,76 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Popular Categories */}
+          <div>
+            <h3 className="mb-6 text-lg font-bold">
+              Popular Categories
+              <span className="mt-2 block h-1 w-10 rounded-full bg-cyan-400" />
+            </h3>
+
+            <ul className="space-y-4">
+              {popularCategories.map((category) => (
+                <li key={category.name}>
+                  <Link
+                    href={category.href}
+                    className="text-sm text-blue-100/70 transition hover:text-cyan-300"
+                  >
+                    {category.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact & Newsletter */}
           <div>
             <h3 className="mb-6 text-lg font-bold">
               Get in Touch
               <span className="mt-2 block h-1 w-10 rounded-full bg-blue-400" />
             </h3>
 
-            <div className="space-y-5">
+            <div className="space-y-4">
               <div className="flex items-start gap-3 text-sm text-blue-100/70">
-                <div className="rounded-lg bg-cyan-400/10 p-2 text-cyan-300">
-                  <Mail size={18} />
-                </div>
+                <Mail size={18} className="mt-0.5 shrink-0 text-cyan-300" />
                 <a
                   href="mailto:support@studiospace.com"
-                  className="mt-2 transition hover:text-cyan-300"
+                  className="transition hover:text-cyan-300"
                 >
                   support@studiospace.com
                 </a>
               </div>
 
               <div className="flex items-start gap-3 text-sm text-blue-100/70">
-                <div className="rounded-lg bg-purple-400/10 p-2 text-purple-300">
-                  <MapPin size={18} />
-                </div>
-                <span className="mt-2">Bangladesh</span>
+                <MapPin size={18} className="mt-0.5 shrink-0 text-purple-300" />
+                <span>Bangladesh</span>
               </div>
             </div>
 
-            <Link
-              href="/studios"
-              className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-cyan-300 transition hover:gap-3"
-            >
-              Explore Studios
-              <ArrowRight size={17} />
-            </Link>
+            {/* Newsletter */}
+            <h4 className="mb-3 mt-7 font-semibold">Newsletter</h4>
+
+            <form onSubmit={handleNewsletter} className="space-y-3">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Your email address"
+                aria-label="Your email address"
+                className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-white outline-none placeholder:text-blue-100/40 focus:border-cyan-400"
+                required
+              />
+
+              <button
+                type="submit"
+                className="w-full rounded-xl bg-cyan-400 px-4 py-3 text-sm font-bold text-slate-950 transition hover:bg-cyan-300"
+              >
+                Subscribe
+              </button>
+            </form>
           </div>
+
         </div>
+        {/* Main Footer ends here */}
 
         {/* Bottom Copyright */}
         <div className="mt-16 border-t border-white/10 pt-7">
@@ -394,6 +283,15 @@ export default function Footer() {
             <p className="text-sm text-blue-100/60">
               © {year} StudioSpace. All rights reserved.
             </p>
+
+            <div className="flex items-center gap-4 text-sm text-blue-100/60">
+              <Link
+                href="/terms"
+                className="transition hover:text-cyan-300"
+              >
+                Terms & Conditions
+              </Link>
+            </div>
 
             <p className="text-sm text-blue-100/60">
               Made with <span className="text-pink-400">♥</span> for creators, by creators.
