@@ -10,6 +10,7 @@ import {
   XCircle,
 } from "lucide-react";
 import toast from "react-hot-toast";
+import ProtectedRoute from "@/app/components/ProtectedRoute";
 
 interface Booking {
   _id: string;
@@ -119,6 +120,7 @@ export default function MyBookingsPage() {
   }
 
   return (
+    <ProtectedRoute>
     <main className="min-h-screen bg-gray-50 px-5 py-12 dark:bg-gray-950">
       <div className="mx-auto max-w-6xl">
         <h1 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
@@ -222,5 +224,6 @@ export default function MyBookingsPage() {
         )}
       </div>
     </main>
+    </ProtectedRoute>
   );
 }

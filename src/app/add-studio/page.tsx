@@ -4,6 +4,7 @@
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import ProtectedRoute from "@/app/components/ProtectedRoute";
 
 export default function AddStudioPage() {
   const router = useRouter();
@@ -92,6 +93,7 @@ export default function AddStudioPage() {
   };
 
   return (
+    <ProtectedRoute>
     <main className="min-h-screen bg-gray-50 px-5 py-12 dark:bg-gray-950">
       <div className="mx-auto max-w-3xl">
 
@@ -283,5 +285,6 @@ export default function AddStudioPage() {
         </form>
       </div>
     </main>
+    </ProtectedRoute>
   );
 }

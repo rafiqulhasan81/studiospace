@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Users, Pencil, Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
+import ProtectedRoute from "@/app/components/ProtectedRoute";
 
 type Studio = {
   _id: string;
@@ -108,6 +109,8 @@ const handleDeleteStudio = async (studioId: string) => {
   }
 
   return (
+
+    <ProtectedRoute>
     <main className="min-h-screen bg-gray-50 px-4 py-12 dark:bg-gray-950">
       <div className="mx-auto max-w-7xl">
         <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
@@ -223,5 +226,6 @@ const handleDeleteStudio = async (studioId: string) => {
         )}
       </div>
     </main>
+    </ProtectedRoute>
   );
 }
