@@ -172,15 +172,16 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-2">
           <div>
             <Image
-              src="/studioSpace logo.png"
+              src="/image/studiospacelogo1.png"
               alt="StudioSpace Logo"
               width={100}
-              height={50}
+              height={30}
               priority
+              className="h-auto w-[180px] object-contain"
             />
-            <h1 className="text-xl font-bold text-blue-600">
+            {/* <h1 className="text-xl font-bold text-blue-600">
               StudioSpace
-            </h1>
+            </h1> */}
           </div>
         </Link>
 
