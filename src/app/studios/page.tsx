@@ -1,7 +1,8 @@
 
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import {
@@ -40,14 +41,26 @@ const categories = [
   "Art Studio",
 ];
 
-export default function ExploreStudiosPage() {
+function ExploreStudiosContent() {
+  const searchParams = useSearchParams();
   const [studios, setStudios] = useState<Studio[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] =
-    useState("All Categories");
+  useState("All Categories");
+
+const categoryFromUrl = searchParams.get("category");
+
+useEffect(() => {
+  const matchedCategory = categories.find(
+    (category) =>
+      category.toLowerCase() === categoryFromUrl?.toLowerCase()
+  );
+
+  setSelectedCategory(matchedCategory || "All Categories");
+}, [categoryFromUrl]);
   const [maxPrice, setMaxPrice] = useState("10000");
 
   const fetchStudios = async () => {
@@ -337,5 +350,19 @@ export default function ExploreStudiosPage() {
         )}
       </div>
     </main>
+  );
+}
+
+export default function ExploreStudiosPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center">
+          Loading studios...
+        </div>
+      }
+    >
+      <ExploreStudiosContent />
+    </Suspense>
   );
 }
