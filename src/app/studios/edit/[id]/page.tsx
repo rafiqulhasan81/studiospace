@@ -13,6 +13,7 @@ type StudioForm = {
   maxCapacity: string;
   location: string;
   imageUrl: string;
+  images: string;
   amenities: string;
   overview: string;
 };
@@ -25,6 +26,7 @@ const initialForm: StudioForm = {
   maxCapacity: "",
   location: "",
   imageUrl: "",
+   images: "",
   amenities: "",
   overview: "",
 };
@@ -66,6 +68,9 @@ const initialForm: StudioForm = {
           maxCapacity: String(studio.maxCapacity ?? ""),
           location: studio.location || "",
           imageUrl: studio.imageUrl || "",
+          images: Array.isArray(studio.images)
+          ? studio.images.join("\n")
+          : "",
           amenities: Array.isArray(studio.amenities)
             ? studio.amenities.join(", ")
             : "",
@@ -125,6 +130,11 @@ const initialForm: StudioForm = {
               .split(",")
               .map((item) => item.trim())
               .filter(Boolean),
+              
+              images: formData.images
+              .split("\n")
+               .map((url) => url.trim())
+               .filter(Boolean),
           }),
         }
       );
