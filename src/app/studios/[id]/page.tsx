@@ -14,8 +14,11 @@ import {
   ShieldCheck,
   CheckCircle,
   CalendarDays,
+  ChevronLeft,
+  ChevronRight,
   User,
   X,
+  
 } from "lucide-react";
 
 type Studio = {
@@ -27,6 +30,7 @@ type Studio = {
   maxCapacity: number;
   location: string;
   imageUrl: string;
+  images?: string[];
   amenities: string[];
   overview: string;
   ownerName: string;
@@ -46,6 +50,14 @@ function StudioDetailsContent() {
   const [studio, setStudio] = useState<Studio | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [activeImage, setActiveImage] = useState(0);
+
+  const galleryImages =
+  studio?.images?.length
+    ? studio.images
+    : studio?.imageUrl
+      ? [studio.imageUrl]
+      : [];
 
   // Booking Form States
   const [showBookingForm, setShowBookingForm] = useState(false);
@@ -205,18 +217,66 @@ function StudioDetailsContent() {
           Back to Studios
         </Link>
 
-        {/* Studio Image */}
-        <div className="relative h-72 overflow-hidden rounded-2xl bg-gray-200 sm:h-96 lg:h-[480px] dark:bg-gray-800">
-          <img
-            src={studio.imageUrl}
-            alt={studio.title}
-            className="h-full w-full object-cover"
-          />
+        {/* Studio Image Gallery */}
+<div className="relative h-72 overflow-hidden rounded-2xl bg-gray-200 sm:h-96 lg:h-[480px] dark:bg-gray-800">
+  {galleryImages.length > 0 && (
+    <>
+      <img
+        src={galleryImages[activeImage]}
+        alt={`${studio.title} - Image ${activeImage + 1}`}
+        className="h-full w-full object-cover"
+      />
 
-          <span className="absolute left-5 top-5 rounded-full bg-blue-600 px-5 py-2 text-sm font-bold text-white shadow">
-            {studio.category}
-          </span>
-        </div>
+      <span className="absolute left-5 top-5 rounded-full bg-blue-600 px-5 py-2 text-sm font-bold text-white shadow">
+        {studio.category}
+      </span>
+
+      {galleryImages.length > 1 && (
+        <>
+          <button
+            type="button"
+            onClick={() =>
+              setActiveImage((prev) =>
+                prev === 0 ? galleryImages.length - 1 : prev - 1
+              )
+            }
+            className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white hover:bg-black/70"
+            aria-label="Previous image"
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          <button
+            type="button"
+            onClick={() =>
+              setActiveImage((prev) =>
+                (prev + 1) % galleryImages.length
+              )
+            }
+            className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white hover:bg-black/70"
+            aria-label="Next image"
+          >
+            <ChevronRight size={24} />
+          </button>
+
+          <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
+            {galleryImages.map((_, index) => (
+              <button
+                key={index}
+                type="button"
+                onClick={() => setActiveImage(index)}
+                aria-label={`Show image ${index + 1}`}
+                className={`h-2.5 w-2.5 rounded-full ${
+                  activeImage === index ? "bg-white" : "bg-white/50"
+                }`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </>
+  )}
+</div>
 
         {/* Main Content */}
         <div className="mt-8 grid gap-8 lg:grid-cols-3">
