@@ -276,6 +276,26 @@ const initialForm: StudioForm = {
               className="w-full rounded-lg border p-3 dark:border-gray-700 dark:bg-gray-800"
             />
           </div>
+          <div>
+  <label className="mb-2 block font-medium">
+    Gallery Image URLs
+  </label>
+
+      <textarea
+        name="images"
+        value={formData.images}
+        onChange={handleChange}
+        rows={5}
+        placeholder={`https://example.com/image-1.jpg
+    https://example.com/image-2.jpg
+    https://example.com/image-3.jpg`}
+        className="w-full rounded-lg border p-3 dark:border-gray-700 dark:bg-gray-800"
+      />
+
+      <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+        Enter one image URL per line. Remove a URL to delete that image.
+      </p>
+    </div>
 
           <div>
             <label className="mb-2 block font-medium">
