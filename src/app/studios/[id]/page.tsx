@@ -52,12 +52,14 @@ function StudioDetailsContent() {
   const [error, setError] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
 
-  const galleryImages =
-  studio?.images?.length
-    ? studio.images
-    : studio?.imageUrl
-      ? [studio.imageUrl]
-      : [];
+  const galleryImages = studio
+  ? [
+      studio.imageUrl,
+      ...(studio.images || []).filter(
+        (image) => image !== studio.imageUrl
+      ),
+    ].filter(Boolean)
+  : [];
 
   // Booking Form States
   const [showBookingForm, setShowBookingForm] = useState(false);

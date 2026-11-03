@@ -12,16 +12,17 @@ export default function AddStudioPage() {
   const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
-    title: "",
-    category: "",
-    hourlyRate: "",
-    securityDeposit: "",
-    maxCapacity: "",
-    location: "",
-    imageUrl: "",
-    amenities: "",
-    overview: "",
-  });
+  title: "",
+  category: "",
+  hourlyRate: "",
+  securityDeposit: "",
+  maxCapacity: "",
+  location: "",
+  imageUrl: "",
+  images: "",
+  amenities: "",
+  overview: "",
+});
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -51,12 +52,18 @@ export default function AddStudioPage() {
           },
           credentials: "include",
           body: JSON.stringify({
-            ...formData,
-            amenities: formData.amenities
-              .split(",")
-              .map((item) => item.trim())
-              .filter(Boolean),
-          }),
+  ...formData,
+
+  amenities: formData.amenities
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean),
+
+  images: formData.images
+    .split("\n")
+    .map((url) => url.trim())
+    .filter(Boolean),
+}),
         }
       );
 
@@ -76,6 +83,7 @@ export default function AddStudioPage() {
         maxCapacity: "",
         location: "",
         imageUrl: "",
+        images: "",
         amenities: "",
         overview: "",
       });
@@ -236,6 +244,29 @@ export default function AddStudioPage() {
               className="w-full rounded-lg border border-gray-300 bg-transparent px-4 py-3 outline-none focus:border-blue-500"
             />
           </div>
+
+          {/* Gallery Image URLs */}
+<div>
+  <label className="mb-2 block font-medium">
+    Gallery Image URLs (Optional)
+  </label>
+
+  <textarea
+    name="images"
+    value={formData.images}
+    onChange={handleChange}
+    placeholder={`https://example.com/studio-1.jpg
+https://example.com/studio-2.jpg
+https://example.com/studio-3.jpg`}
+    rows={4}
+    className="w-full rounded-lg border border-gray-300 bg-transparent px-4 py-3 outline-none focus:border-blue-500"
+  />
+
+  <p className="mt-2 text-sm text-gray-500">
+    Add one image URL per line. These images will appear in the studio gallery.
+  </p>
+</div>
+
 
           {/* Amenities */}
           <div>
