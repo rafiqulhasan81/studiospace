@@ -122,6 +122,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
+import { UserRound } from "lucide-react";
 import {
   Sun,
   Moon,
@@ -165,7 +166,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="w-full border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950">
+    <nav className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
 
         {/* Logo */}
@@ -263,20 +264,20 @@ export default function Navbar() {
     onClick={() => setIsProfileOpen(!isProfileOpen)}
     className="flex items-center gap-2 rounded-lg p-2 transition hover:bg-gray-100 dark:hover:bg-gray-800"
   >
-    {session.user.image ? (
-      <Image
-        src={session.user.image}
-        alt="User Profile"
-        width={36}
-        height={36}
-        unoptimized
-        className="h-9 w-9 rounded-full object-cover"
-      />
-    ) : (
-      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 text-blue-600">
-        <User size={20} />
-      </div>
-    )}
+   <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-blue-100 text-blue-600">
+  {session.user.image ? (
+    <Image
+      src={session.user.image}
+      alt="User Profile"
+      width={36}
+      height={36}
+      unoptimized
+      className="h-full w-full rounded-full object-cover"
+    />
+  ) : (
+    <UserRound size={22} />
+  )}
+</div>
 
     <span className="hidden font-medium text-gray-700 sm:block dark:text-white">
       {session.user.name}
