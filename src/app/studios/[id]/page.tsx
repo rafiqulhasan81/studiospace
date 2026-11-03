@@ -86,6 +86,7 @@ function StudioDetailsContent() {
         }
 
         setStudio(data.studio);
+        setActiveImage(0);
       } catch (error) {
         console.error("Error fetching studio:", error);
         setError(true);
