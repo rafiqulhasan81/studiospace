@@ -4,6 +4,7 @@ import { authClient } from "@/lib/auth-client";
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { Eye, EyeOff, User, Mail, Lock, Image } from "lucide-react";
+import toast from "react-hot-toast";
 
 
 export default function RegisterPage() {
@@ -21,17 +22,17 @@ const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
 
   // Password validation
   if (password.length < 6) {
-    alert("Password must be at least 6 characters long.");
+    toast.error("Password must be at least 6 characters long.");
     return;
   }
 
   if (!/[A-Z]/.test(password)) {
-    alert("Password must contain at least one uppercase letter.");
+    toast.error("Password must contain at least one uppercase letter.");
     return;
   }
 
   if (!/[a-z]/.test(password)) {
-    alert("Password must contain at least one lowercase letter.");
+    toast.error("Password must contain at least one lowercase letter.");
     return;
   }
 
@@ -46,12 +47,12 @@ const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
     });
 
     if (error) {
-      alert(error.message);
+      toast.error(error.message || "Registration failed. Please try again.");
       return;
     }
 
     console.log("Registration successful:", data);
-    alert("Account created successfully!");
+    toast.success("Account created successfully!");
 
     // Clear form
     setName("");
@@ -61,7 +62,7 @@ const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
 
   } catch (error) {
     console.error("Registration error:", error);
-    alert("Something went wrong. Please try again.");
+    toast.error("Something went wrong. Please try again.");
   } finally {
     setIsLoading(false);
   }
@@ -158,6 +159,8 @@ const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                minLength={6}
+                maxLength={72}
                 className="w-full bg-transparent py-3 outline-none dark:text-white"
               />
 
