@@ -103,7 +103,7 @@ export default function HeroSlider() {
               href="/add-studio"
               className="rounded-xl border border-white/60 px-6 py-3.5 font-semibold text-white transition hover:bg-white hover:text-gray-900"
             >
-              Become a Host
+              Host Your Space
             </Link>
           </div>
         </div>
