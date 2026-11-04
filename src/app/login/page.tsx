@@ -46,6 +46,18 @@ const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
   }
 };
 
+const handleGoogleLogin = async () => {
+  try {
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "http://localhost:3000/",
+    });
+  } catch (error) {
+    console.error("Google login error:", error);
+    toast.error("Google login failed. Please try again.");
+  }
+};
+
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12 dark:bg-gray-950">
@@ -130,12 +142,13 @@ const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
 
         {/* Google Login Button */}
         <button
-          type="button"
-          className="flex w-full items-center justify-center gap-3 rounded-lg border border-gray-300 py-3 font-medium transition hover:bg-gray-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800"
-        >
-          <span className="font-bold text-lg">G</span>
-          Continue with Google
-        </button>
+  type="button"
+  onClick={handleGoogleLogin}
+  className="flex w-full items-center justify-center gap-3 rounded-lg border border-gray-300 py-3 font-medium transition hover:bg-gray-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800"
+>
+  <span className="font-bold text-lg">G</span>
+  Continue with Google
+</button>
 
         {/* Register Link */}
         <p className="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
