@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+ import toast from "react-hot-toast";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -12,8 +13,10 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+ 
 
-  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
+  
+const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
   e.preventDefault();
 
   try {
@@ -25,23 +28,24 @@ export default function LoginPage() {
     });
 
     if (error) {
-      alert(error.message);
+      toast.error(error.message || "Login failed. Please try again.");
       return;
     }
 
     console.log("Login successful:", data);
-    alert("Login successful!");
+    toast.success("Login successful! Welcome back.");
 
     router.push("/");
     router.refresh();
 
   } catch (error) {
     console.error("Login error:", error);
-    alert("Something went wrong. Please try again.");
+    toast.error("Something went wrong. Please try again.");
   } finally {
     setIsLoading(false);
   }
 };
+
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12 dark:bg-gray-950">

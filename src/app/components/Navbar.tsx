@@ -123,6 +123,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { UserRound } from "lucide-react";
+import toast from "react-hot-toast";
 import {
   Sun,
   Moon,
@@ -153,17 +154,26 @@ export default function Navbar() {
   }, []);
 
   // Logout Function
-  const handleLogout = async () => {
+  
+const handleLogout = async () => {
+  try {
     const { error } = await authClient.signOut();
 
     if (error) {
-      alert(error.message);
+      toast.error(error.message || "Logout failed. Please try again.");
       return;
     }
 
+    toast.success("You have logged out successfully.");
     router.push("/login");
     router.refresh();
-  };
+
+  } catch (error) {
+    console.error("Logout error:", error);
+    toast.error("Something went wrong. Please try again.");
+  }
+};
+
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950">
