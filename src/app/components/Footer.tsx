@@ -3,6 +3,7 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Mail,
   MapPin,
@@ -55,14 +56,12 @@ export default function Footer() {
 
   return (
     <footer className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950 text-white">
-
       {/* Decorative Background */}
       <div className="pointer-events-none absolute -left-32 -top-32 h-80 w-80 rounded-full bg-blue-500/20 blur-[100px]" />
       <div className="pointer-events-none absolute -right-32 top-20 h-96 w-96 rounded-full bg-purple-500/20 blur-[110px]" />
       <div className="pointer-events-none absolute bottom-0 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-cyan-500/10 blur-[100px]" />
 
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-
         {/* Top CTA */}
         <div className="mb-16 flex flex-col gap-6 rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-md sm:p-10 lg:flex-row lg:items-center lg:justify-between">
           <div>
@@ -94,22 +93,27 @@ export default function Footer() {
 
         {/* Main Footer */}
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-5">
-
+          
           {/* Brand */}
-          <div>
-            <Link
-              href="/"
-              className="inline-block text-3xl font-extrabold tracking-tight"
-            >
-              Studio<span className="text-cyan-400">Space</span>
-              <span className="text-purple-400">.</span>
-            </Link>
+<div>
+  <Link
+    href="/"
+    className="inline-flex items-center rounded-xl bg-white px-4 py-2.5 shadow-md"
+  >
+    <Image
+      src="/image/studiospacelogo1.png"
+      alt="StudioSpace Logo"
+      width={180}
+      height={54}
+      className="h-auto w-[180px] object-contain"
+    />
+  </Link>
 
-            <p className="mt-5 max-w-xs text-sm leading-7 text-blue-100/70">
-              Discover, book and share creative spaces.
-              We connect studio owners with creators to bring
-              amazing ideas to life.
-            </p>
+  <p className="mt-5 max-w-xs text-sm leading-7 text-blue-100/70">
+    Discover, book and share creative spaces.
+    We connect studio owners with creators to bring
+    amazing ideas to life.
+  </p>
 
             {/* Social Links */}
             <div className="mt-7 flex gap-3">
@@ -154,7 +158,6 @@ export default function Footer() {
               </a>
             </div>
           </div>
-          {/* Brand section ends here */}
 
           {/* Quick Links */}
           <div>
@@ -273,7 +276,6 @@ export default function Footer() {
               </button>
             </form>
           </div>
-
         </div>
         {/* Main Footer ends here */}
 
@@ -298,7 +300,6 @@ export default function Footer() {
             </p>
           </div>
         </div>
-
       </div>
     </footer>
   );
