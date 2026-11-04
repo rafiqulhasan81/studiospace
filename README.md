@@ -132,7 +132,7 @@ Studio owners can also manage their studio listings and provide workspace opport
 
 ### Frontend
 
-```text
+
 studiospace/
 ├── public/
 ├── src/
@@ -153,18 +153,18 @@ studiospace/
 │       └── auth-client.ts
 ├── package.json
 └── README.md
-```
+
 
 ### Backend
 
-```text
+
 studiospace-server/
 ├── index.js
 ├── db.js
 ├── auth.js
 ├── package.json
 └── .env
-```
+
 
 ---
 
@@ -230,6 +230,15 @@ Better Auth also manages its authentication-related database records.
 ## Installation and Setup
 
 Follow these steps to run StudioSpace locally.
+
+## Examiner Test Credentials
+
+Use the following credentials to test the application:
+
+- **Email:** colin1@gmail.com
+- **Password:** Colin123
+
+**Note:** These credentials are provided for evaluation purposes.
 
 ### Prerequisites
 
