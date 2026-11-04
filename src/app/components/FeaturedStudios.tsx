@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { MapPin, Users, ArrowRight } from "lucide-react";
+import { MapPin, Users, ArrowRight, Star } from "lucide-react";
 
 // Studio Data Type
 type Studio = {
@@ -15,6 +15,7 @@ type Studio = {
   location: string;
   imageUrl: string;
   overview: string;
+  rating?: number;
 };
 
 type ApiResponse = {
@@ -43,6 +44,7 @@ export default function FeaturedStudios() {
         const data: ApiResponse = await response.json();
 
         setStudios(data.studios);
+        console.log("Featured Studios:", data.studios);
       } catch (error) {
         console.error("Error fetching studios:", error);
         setError("Studios could not be loaded. Please try again.");
@@ -132,9 +134,26 @@ export default function FeaturedStudios() {
 
               {/* Studio Information */}
               <div className="p-5">
-                <h3 className="line-clamp-1 text-xl font-bold">
-                  {studio.title}
-                </h3>
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className="line-clamp-1 text-xl font-bold">
+                    {studio.title}
+                  </h3>
+
+                  
+{/* Rating Badge */}
+{Number(studio.rating) > 0 &&
+Number.isFinite(Number(studio.rating)) ? (
+  <span className="flex shrink-0 items-center gap-1 rounded-full bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-600 dark:bg-amber-950/50 dark:text-amber-400">
+    <Star size={14} fill="currentColor" />
+    {Number(studio.rating).toFixed(1)}
+  </span>
+) : (
+  <span className="shrink-0 rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-600 dark:bg-blue-950 dark:text-blue-300">
+    New Studio
+  </span>
+)}
+
+                </div>
 
                 <p className="mt-2 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
                   <MapPin size={16} />
@@ -146,10 +165,11 @@ export default function FeaturedStudios() {
                     <p className="text-xs text-gray-500 dark:text-gray-400">
                       Hourly Rate
                     </p>
+
                     <p className="text-lg font-bold text-blue-600">
-                      ৳{studio.hourlyRate}
+                      ${studio.hourlyRate}
                       <span className="text-sm font-normal text-gray-500">
-                        /hr
+                        {" "}/ hr
                       </span>
                     </p>
                   </div>
@@ -173,7 +193,6 @@ export default function FeaturedStudios() {
           ))}
         </div>
       )}
-
     </section>
   );
 }
