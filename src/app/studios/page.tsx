@@ -35,10 +35,11 @@ type ApiResponse = {
 
 const categories = [
   "All Categories",
-  "Photography",
-  "Music Studio",
-  "Podcast Studio",
-  "Art Studio",
+  "photography",
+  "video creation",
+  "podcast",
+  "music",
+  "art studio",
 ];
 
 function ExploreStudiosContent() {
@@ -106,9 +107,17 @@ useEffect(() => {
         studio.location.toLowerCase().includes(search);
 
       const matchesCategory =
-        selectedCategory === "All Categories" ||
-        studio.category.toLowerCase() ===
-          selectedCategory.toLowerCase();
+  selectedCategory === "All Categories" ||
+  (selectedCategory === "music"
+    ? ["music studio", "music recording"].includes(
+        studio.category.toLowerCase()
+      )
+    : selectedCategory === "art"
+      ? studio.category.toLowerCase() === "art studio"
+      : selectedCategory === "video creation"
+        ? studio.category.toLowerCase() === "video creation"
+        : studio.category.toLowerCase() ===
+          selectedCategory.toLowerCase());
 
       const matchesPrice =
         Number.isFinite(priceLimit) &&
