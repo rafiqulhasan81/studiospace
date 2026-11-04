@@ -8,36 +8,38 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+
 const steps = [
   {
     number: "01",
-    title: "Find Your Studio",
+    title: "Discover Spaces",
     description:
-      "Browse a wide range of creative spaces and discover the perfect studio for your needs.",
+      "Browse creative spaces and discover the perfect studio for your project.",
     icon: Search,
   },
   {
     number: "02",
-    title: "Explore Details",
+    title: "Select Shoot Hours",
     description:
-      "Check studio photos, amenities, location, pricing and all the details before booking.",
+      "Choose your preferred booking date and available start and end times.",
     icon: Eye,
   },
   {
     number: "03",
-    title: "Book Your Space",
+    title: "Book Instantly",
     description:
-      "Choose your preferred date and time, submit your booking request and wait for confirmation.",
+      "Submit your booking request quickly and wait for the studio owner's confirmation.",
     icon: CalendarCheck,
   },
   {
     number: "04",
-    title: "Start Creating",
+    title: "Create & Produce",
     description:
       "Visit your booked studio and bring your creative ideas to life.",
     icon: Sparkles,
   },
 ];
+
 
 export default function HowItWorks() {
   return (

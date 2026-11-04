@@ -4,7 +4,7 @@ import {
   ShieldCheck,
   BadgeCheck,
   Headphones,
-  Wallet,
+  Wrench,
   ArrowRight,
   Users,
 } from "lucide-react";
@@ -12,27 +12,27 @@ import {
 const benefits = [
   {
     icon: ShieldCheck,
-    title: "Trusted & Secure Booking",
+    title: "Liability Protection",
     description:
-      "Book creative spaces with confidence through a transparent and reliable booking experience.",
+      "Clear booking policies and support to help protect hosts and creators during studio bookings.",
   },
   {
     icon: BadgeCheck,
-    title: "Verified Studio Information",
+    title: "Verified Profiles",
     description:
-      "Explore studio details, facilities, pricing and amenities before making your booking.",
+      "Build trust through verified user information and reliable studio owner profiles.",
   },
   {
-    icon: Wallet,
-    title: "Transparent Pricing",
+    icon: Wrench,
+    title: "Equipment Safety",
     description:
-      "Know the hourly rate and security deposit upfront. No unexpected surprises.",
+      "Help creators and studio owners maintain safe and responsible use of studio equipment.",
   },
   {
     icon: Headphones,
-    title: "Creator Support",
+    title: "24/7 Host Support",
     description:
-      "We aim to make your creative journey easier with a smooth and supportive experience.",
+      "Get assistance with booking-related questions and support whenever you need help.",
   },
 ];
 
