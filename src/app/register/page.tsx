@@ -5,9 +5,12 @@ import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { Eye, EyeOff, User, Mail, Lock, Image } from "lucide-react";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+
 
 
 export default function RegisterPage() {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [photoURL, setPhotoURL] = useState("");
@@ -52,15 +55,22 @@ const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
     }
 
     console.log("Registration successful:", data);
-    toast.success("Account created successfully!");
 
-    // Clear form
-    setName("");
-    setEmail("");
-    setPhotoURL("");
-    setPassword("");
+// Existing session থাকলে Sign Out
+await authClient.signOut();
 
-  } catch (error) {
+toast.success("Account created successfully! Please login.");
+
+// Clear form
+setName("");
+setEmail("");
+setPhotoURL("");
+setPassword("");
+
+// Go to Login page
+router.replace("/login");
+  
+} catch (error) {
     console.error("Registration error:", error);
     toast.error("Something went wrong. Please try again.");
   } finally {
