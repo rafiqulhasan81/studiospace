@@ -8,10 +8,10 @@ The platform also enables studio owners to list their spaces, manage their listi
 
 ## Live Demo
 
-- **Frontend:** Coming Soon
-- **Backend API:** Coming Soon
-- **Client Repository:** Add your GitHub repository URL
-- **Server Repository:** Add your GitHub repository URL
+- **Frontend:(https://studiospace-iota.vercel.app/)
+- **Backend API:(https://studiospace-server-nine-psi.vercel.app/)
+- **Client Repository:(https://github.com/rafiqulhasan81/studiospace)
+- **Server Repository:(https://github.com/rafiqulhasan81/studiospace-server)
 
 ---
 
@@ -83,6 +83,7 @@ Studio owners can also manage their studio listings and provide workspace opport
 - Lucide React
 - React Hot Toast
 - next-themes
+- Daisy ui
 
 ### Backend
 
