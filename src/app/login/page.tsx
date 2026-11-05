@@ -122,6 +122,16 @@ const handleGoogleLogin = async () => {
             </div>
           </div>
 
+
+          <div className=" my-3 flex justify-end">
+          <button
+            type="button"
+            className="text-sm text-blue-600 hover:underline"
+          >
+            Forgot Password?
+          </button>
+        </div>
+
           {/* Login Button */}
 <button
   type="submit"
