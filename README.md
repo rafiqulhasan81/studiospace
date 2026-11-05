@@ -320,7 +320,7 @@ npm run dev
 The backend API will run at:
 
 ```text
-http://localhost:8000
+https://studiospace-server-nine-psi.vercel.app
 ```
 
 ---

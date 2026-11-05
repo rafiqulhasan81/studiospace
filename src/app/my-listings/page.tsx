@@ -35,7 +35,7 @@ export default function MyListingsPage() {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/api/studios/${selectedStudio._id}`,
+        `https://studiospace-server-nine-psi.vercel.app/api/studios/${selectedStudio._id}`,
         {
           method: "DELETE",
           credentials: "include",
@@ -70,7 +70,7 @@ export default function MyListingsPage() {
     const fetchMyStudios = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8000/api/my-listings",
+          "https://studiospace-server-nine-psi.vercel.app/api/my-listings",
           {
             credentials: "include",
           }

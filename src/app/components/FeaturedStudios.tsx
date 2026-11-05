@@ -34,7 +34,7 @@ export default function FeaturedStudios() {
     const fetchStudios = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8000/api/studios/featured"
+          "https://studiospace-server-nine-psi.vercel.app/api/studios/featured"
         );
 
         if (!response.ok) {
@@ -139,19 +139,19 @@ export default function FeaturedStudios() {
                     {studio.title}
                   </h3>
 
-                  
-{/* Rating Badge */}
-{Number(studio.rating) > 0 &&
-Number.isFinite(Number(studio.rating)) ? (
-  <span className="flex shrink-0 items-center gap-1 rounded-full bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-600 dark:bg-amber-950/50 dark:text-amber-400">
-    <Star size={14} fill="currentColor" />
-    {Number(studio.rating).toFixed(1)}
-  </span>
-) : (
-  <span className="shrink-0 rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-600 dark:bg-blue-950 dark:text-blue-300">
-    New Studio
-  </span>
-)}
+
+                  {/* Rating Badge */}
+                  {Number(studio.rating) > 0 &&
+                    Number.isFinite(Number(studio.rating)) ? (
+                    <span className="flex shrink-0 items-center gap-1 rounded-full bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-600 dark:bg-amber-950/50 dark:text-amber-400">
+                      <Star size={14} fill="currentColor" />
+                      {Number(studio.rating).toFixed(1)}
+                    </span>
+                  ) : (
+                    <span className="shrink-0 rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-600 dark:bg-blue-950 dark:text-blue-300">
+                      New Studio
+                    </span>
+                  )}
 
                 </div>
 

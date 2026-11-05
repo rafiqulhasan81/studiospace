@@ -50,18 +50,18 @@ function ExploreStudiosContent() {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] =
-  useState("All Categories");
+    useState("All Categories");
 
-const categoryFromUrl = searchParams.get("category");
+  const categoryFromUrl = searchParams.get("category");
 
-useEffect(() => {
-  const matchedCategory = categories.find(
-    (category) =>
-      category.toLowerCase() === categoryFromUrl?.toLowerCase()
-  );
+  useEffect(() => {
+    const matchedCategory = categories.find(
+      (category) =>
+        category.toLowerCase() === categoryFromUrl?.toLowerCase()
+    );
 
-  setSelectedCategory(matchedCategory || "All Categories");
-}, [categoryFromUrl]);
+    setSelectedCategory(matchedCategory || "All Categories");
+  }, [categoryFromUrl]);
   const [maxPrice, setMaxPrice] = useState("10000");
 
   const fetchStudios = async () => {
@@ -69,7 +69,7 @@ useEffect(() => {
       setLoading(true);
       setError(false);
 
-      const response = await fetch("http://localhost:8000/api/studios");
+      const response = await fetch("https://studiospace-server-nine-psi.vercel.app/api/studios");
 
       if (!response.ok) {
         throw new Error("Failed to load studios.");
@@ -107,17 +107,17 @@ useEffect(() => {
         studio.location.toLowerCase().includes(search);
 
       const matchesCategory =
-  selectedCategory === "All Categories" ||
-  (selectedCategory === "music"
-    ? ["music studio", "music recording"].includes(
-        studio.category.toLowerCase()
-      )
-    : selectedCategory === "art"
-      ? studio.category.toLowerCase() === "art studio"
-      : selectedCategory === "video creation"
-        ? studio.category.toLowerCase() === "video creation"
-        : studio.category.toLowerCase() ===
-          selectedCategory.toLowerCase());
+        selectedCategory === "All Categories" ||
+        (selectedCategory === "music"
+          ? ["music studio", "music recording"].includes(
+            studio.category.toLowerCase()
+          )
+          : selectedCategory === "art"
+            ? studio.category.toLowerCase() === "art studio"
+            : selectedCategory === "video creation"
+              ? studio.category.toLowerCase() === "video creation"
+              : studio.category.toLowerCase() ===
+              selectedCategory.toLowerCase());
 
       const matchesPrice =
         Number.isFinite(priceLimit) &&

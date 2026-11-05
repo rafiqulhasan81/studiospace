@@ -42,7 +42,7 @@ export default function MyBookingsPage() {
     const fetchBookings = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8000/api/bookings",
+          "https://studiospace-server-nine-psi.vercel.app/api/bookings",
           { credentials: "include" }
         );
 
@@ -77,7 +77,7 @@ export default function MyBookingsPage() {
       setCancellingId(bookingId);
 
       const response = await fetch(
-        `http://localhost:8000/api/bookings/${bookingId}`,
+        `https://studiospace-server-nine-psi.vercel.app/api/bookings/${bookingId}`,
         {
           method: "DELETE",
           credentials: "include",
@@ -202,19 +202,18 @@ export default function MyBookingsPage() {
                     </div>
 
                     {/* Booking Status - DaisyUI Badge */}
-<span
-  className={`badge badge-lg ${
-    booking.status === "Pending"
-      ? "badge-warning"
-      : booking.status === "Confirmed"
-        ? "badge-success"
-        : booking.status === "Completed"
-          ? "badge-info"
-          : "badge-error"
-  }`}
->
-  {booking.status}
-</span>
+                    <span
+                      className={`badge badge-lg ${booking.status === "Pending"
+                          ? "badge-warning"
+                          : booking.status === "Confirmed"
+                            ? "badge-success"
+                            : booking.status === "Completed"
+                              ? "badge-info"
+                              : "badge-error"
+                        }`}
+                    >
+                      {booking.status}
+                    </span>
                   </div>
 
                   {/* Booking Price Information */}
@@ -253,7 +252,7 @@ export default function MyBookingsPage() {
                   </div>
 
 
-                  
+
 
                   {/* Pending Booking Actions */}
                   {booking.status === "Pending" && (

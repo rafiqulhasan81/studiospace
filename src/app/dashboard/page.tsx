@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import ProtectedRoute from "@/app/components/ProtectedRoute";
 
-const API_URL = "http://localhost:8000";
+const API_URL = "https://studiospace-server-nine-psi.vercel.app";
 
 type Booking = {
   _id: string;
@@ -281,20 +281,19 @@ export default function DashboardPage() {
                         </td>
 
                         <td className="p-3">
-  <span
-    className={`rounded-full px-3 py-1 text-xs font-medium ${
-      booking.status === "Confirmed"
-        ? "bg-green-100 text-green-700"
-        : booking.status === "Pending"
-          ? "bg-yellow-100 text-yellow-700"
-          : booking.status === "Cancelled"
-            ? "bg-red-100 text-red-700"
-            : "bg-gray-100 text-gray-700"
-    }`}
-  >
-    {booking.status}
-  </span>
-</td>
+                          <span
+                            className={`rounded-full px-3 py-1 text-xs font-medium ${booking.status === "Confirmed"
+                                ? "bg-green-100 text-green-700"
+                                : booking.status === "Pending"
+                                  ? "bg-yellow-100 text-yellow-700"
+                                  : booking.status === "Cancelled"
+                                    ? "bg-red-100 text-red-700"
+                                    : "bg-gray-100 text-gray-700"
+                              }`}
+                          >
+                            {booking.status}
+                          </span>
+                        </td>
                       </tr>
                     ))}
                   </tbody>

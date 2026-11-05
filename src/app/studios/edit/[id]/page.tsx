@@ -26,12 +26,12 @@ const initialForm: StudioForm = {
   maxCapacity: "",
   location: "",
   imageUrl: "",
-   images: "",
+  images: "",
   amenities: "",
   overview: "",
 };
 
- function EditStudioContent() {
+function EditStudioContent() {
   const params = useParams();
   const router = useRouter();
 
@@ -46,7 +46,7 @@ const initialForm: StudioForm = {
     const fetchStudio = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/studios/${id}`,
+          `https://studiospace-server-nine-psi.vercel.app/api/studios/${id}`,
           {
             credentials: "include",
           }
@@ -69,8 +69,8 @@ const initialForm: StudioForm = {
           location: studio.location || "",
           imageUrl: studio.imageUrl || "",
           images: Array.isArray(studio.images)
-          ? studio.images.join("\n")
-          : "",
+            ? studio.images.join("\n")
+            : "",
           amenities: Array.isArray(studio.amenities)
             ? studio.amenities.join(", ")
             : "",
@@ -114,7 +114,7 @@ const initialForm: StudioForm = {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/api/studios/${id}`,
+        `https://studiospace-server-nine-psi.vercel.app/api/studios/${id}`,
         {
           method: "PUT",
           credentials: "include",
@@ -130,11 +130,11 @@ const initialForm: StudioForm = {
               .split(",")
               .map((item) => item.trim())
               .filter(Boolean),
-              
-              images: formData.images
+
+            images: formData.images
               .split("\n")
-               .map((url) => url.trim())
-               .filter(Boolean),
+              .map((url) => url.trim())
+              .filter(Boolean),
           }),
         }
       );
@@ -277,25 +277,25 @@ const initialForm: StudioForm = {
             />
           </div>
           <div>
-  <label className="mb-2 block font-medium">
-    Gallery Image URLs
-  </label>
+            <label className="mb-2 block font-medium">
+              Gallery Image URLs
+            </label>
 
-      <textarea
-        name="images"
-        value={formData.images}
-        onChange={handleChange}
-        rows={5}
-        placeholder={`https://example.com/image-1.jpg
+            <textarea
+              name="images"
+              value={formData.images}
+              onChange={handleChange}
+              rows={5}
+              placeholder={`https://example.com/image-1.jpg
     https://example.com/image-2.jpg
     https://example.com/image-3.jpg`}
-        className="w-full rounded-lg border p-3 dark:border-gray-700 dark:bg-gray-800"
-      />
+              className="w-full rounded-lg border p-3 dark:border-gray-700 dark:bg-gray-800"
+            />
 
-      <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-        Enter one image URL per line. Remove a URL to delete that image.
-      </p>
-    </div>
+            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              Enter one image URL per line. Remove a URL to delete that image.
+            </p>
+          </div>
 
           <div>
             <label className="mb-2 block font-medium">
