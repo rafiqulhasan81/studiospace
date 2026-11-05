@@ -18,6 +18,7 @@ import {
   ChevronRight,
   User,
   X,
+  Star,
   
 } from "lucide-react";
 
@@ -37,6 +38,16 @@ type Studio = {
   ownerEmail: string;
 };
 
+type Review = {
+  _id: string;
+  studioId: string;
+  userId: string;
+  userName: string;
+  rating: number;
+  comment: string;
+  createdAt: string;
+};
+
 type ApiResponse = {
   success: boolean;
   studio: Studio;
@@ -51,7 +62,13 @@ function StudioDetailsContent() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
+  // Review States
+const [reviews, setReviews] = useState<Review[]>([]);
+const [reviewLoading, setReviewLoading] = useState(true);
 
+const [rating, setRating] = useState(5);
+const [comment, setComment] = useState("");
+const [isSubmittingReview, setIsSubmittingReview] = useState(false);
   const galleryImages = studio
   ? [
       studio.imageUrl,
@@ -100,6 +117,37 @@ function StudioDetailsContent() {
       fetchStudio();
     }
   }, [id]);
+
+
+  // Fetch Studio Reviews
+useEffect(() => {
+  const fetchReviews = async () => {
+    try {
+      setReviewLoading(true);
+
+      const response = await fetch(
+        `http://localhost:8000/api/reviews/${id}`
+      );
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Failed to load reviews.");
+      }
+
+      setReviews(data.reviews);
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+      toast.error("Failed to load reviews.");
+    } finally {
+      setReviewLoading(false);
+    }
+  };
+
+  if (id) {
+    fetchReviews();
+  }
+}, [id]);
 
   // Loading State
   if (loading) {
@@ -206,6 +254,59 @@ function StudioDetailsContent() {
       setIsBooking(false);
     }
   };
+
+// Submit Studio Review
+const handleReviewSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  if (!studio) return;
+
+  if (!comment.trim()) {
+    toast.error("Please write a review.");
+    return;
+  }
+
+  try {
+    setIsSubmittingReview(true);
+
+    const response = await fetch("http://localhost:8000/api/reviews", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        studioId: studio._id,
+        rating,
+        comment,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.message || "Failed to submit review.");
+    }
+
+    setReviews((previousReviews) => [
+      data.review,
+      ...previousReviews,
+    ]);
+
+    setRating(5);
+    setComment("");
+
+    toast.success("Review submitted successfully!");
+  } catch (error) {
+    const message =
+      error instanceof Error ? error.message : "Something went wrong.";
+
+    toast.error(message);
+  } finally {
+    setIsSubmittingReview(false);
+  }
+};
+
 
   return (
     <main className="min-h-screen bg-gray-50 py-10 dark:bg-gray-950">
@@ -401,6 +502,129 @@ function StudioDetailsContent() {
                 </div>
               </div>
             </section>
+
+
+            {/* Reviews Section */}
+<section className="space-y-6">
+  <div>
+    <h2 className="text-2xl font-bold">Reviews & Ratings</h2>
+    <p className="mt-1 text-sm text-gray-500">
+      Share your experience with this studio.
+    </p>
+  </div>
+
+  {/* Review Form */}
+  <form
+    onSubmit={handleReviewSubmit}
+    className="space-y-4 rounded-xl border p-5"
+  >
+    <h3 className="text-lg font-semibold">Write a Review</h3>
+
+    {/* Star Rating */}
+    <div>
+      <p className="mb-2 text-sm font-medium">Your Rating</p>
+
+      <div className="flex gap-2">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <button
+            key={star}
+            type="button"
+            onClick={() => setRating(star)}
+            aria-label={`Rate ${star} out of 5`}
+            className="transition hover:scale-110"
+          >
+            <Star
+              size={28}
+              className={
+                star <= rating
+                  ? "fill-yellow-400 text-yellow-400"
+                  : "text-gray-300"
+              }
+            />
+          </button>
+        ))}
+      </div>
+    </div>
+
+    {/* Review Comment */}
+    <div>
+      <label
+        htmlFor="review-comment"
+        className="mb-2 block text-sm font-medium"
+      >
+        Your Review
+      </label>
+
+      <textarea
+        id="review-comment"
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}
+        placeholder="Share your experience..."
+        rows={4}
+        className="w-full rounded-lg border bg-transparent p-3 outline-none focus:border-blue-500"
+        required
+      />
+    </div>
+
+    <button
+      type="submit"
+      disabled={isSubmittingReview}
+      className="rounded-lg bg-blue-600 px-5 py-2.5 font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+    >
+      {isSubmittingReview ? "Submitting..." : "Submit Review"}
+    </button>
+  </form>
+
+  {/* Review List */}
+  <div className="space-y-4">
+    <h3 className="text-lg font-semibold">
+      Customer Reviews ({reviews.length})
+    </h3>
+
+    {reviewLoading ? (
+      <p className="text-sm text-gray-500">Loading reviews...</p>
+    ) : reviews.length === 0 ? (
+      <p className="rounded-xl border p-5 text-center text-gray-500">
+        No reviews yet. Be the first to review this studio!
+      </p>
+    ) : (
+      reviews.map((review) => (
+        <article
+          key={review._id}
+          className="rounded-xl border p-5"
+        >
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <h4 className="font-semibold">{review.userName}</h4>
+
+              <div className="mt-1 flex gap-1">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <Star
+                    key={star}
+                    size={16}
+                    className={
+                      star <= review.rating
+                        ? "fill-yellow-400 text-yellow-400"
+                        : "text-gray-300"
+                    }
+                  />
+                ))}
+              </div>
+            </div>
+
+            <span className="text-xs text-gray-500">
+              {new Date(review.createdAt).toLocaleDateString()}
+            </span>
+          </div>
+
+          <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
+            {review.comment}
+          </p>
+        </article>
+      ))
+    )}
+  </div>
+</section>
 
           </div>
 

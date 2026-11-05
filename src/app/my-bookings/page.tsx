@@ -201,20 +201,20 @@ export default function MyBookingsPage() {
                       </p>
                     </div>
 
-                    {/* Booking Status */}
-                    <span
-                      className={`rounded-full px-4 py-2 text-sm font-semibold ${
-                        booking.status === "Pending"
-                          ? "bg-yellow-100 text-yellow-800"
-                          : booking.status === "Confirmed"
-                            ? "bg-green-100 text-green-800"
-                            : booking.status === "Completed"
-                              ? "bg-blue-100 text-blue-800"
-                              : "bg-red-100 text-red-800"
-                      }`}
-                    >
-                      {booking.status}
-                    </span>
+                    {/* Booking Status - DaisyUI Badge */}
+<span
+  className={`badge badge-lg ${
+    booking.status === "Pending"
+      ? "badge-warning"
+      : booking.status === "Confirmed"
+        ? "badge-success"
+        : booking.status === "Completed"
+          ? "badge-info"
+          : "badge-error"
+  }`}
+>
+  {booking.status}
+</span>
                   </div>
 
                   {/* Booking Price Information */}
@@ -251,6 +251,9 @@ export default function MyBookingsPage() {
                     </div>
 
                   </div>
+
+
+                  
 
                   {/* Pending Booking Actions */}
                   {booking.status === "Pending" && (
