@@ -50,7 +50,7 @@ const handleGoogleLogin = async () => {
   try {
     await authClient.signIn.social({
       provider: "google",
-      callbackURL: "http://localhost:3000/",
+      callbackURL: "https://studiospace-iota.vercel.app/",
     });
   } catch (error) {
     console.error("Google login error:", error);
